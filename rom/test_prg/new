@@ -1,0 +1,100 @@
+from src.utils.log_setup import log
+
+
+class Jump:
+    def __init__(self, cpu):
+        self.cpu = cpu
+
+    def jmp_indirect_x(self):
+        base_address = self.cpu.read_word_le(self.cpu.pc)
+        self.cpu.pc += 2
+        effective_address = (base_address + self.cpu.x)
+        self.cpu.pc = self.cpu.read_word_le(effective_address)
+        self.cpu.cycles += 5
+        log.debug(
+            f"JMP (Indirect, X) executed. Base Address: {hex(base_address)}, "
+            f"Effective Address: {hex(effective_address)}, Jump Address: {hex(self.cpu.pc)}"
+        )
+
+    def jmp_absolute(self):
+        self.cpu.pc = self.cpu.read_word_le(self.cpu.pc)
+        self.cpu.cycles += 3
+        log.debug(f"JMP -> Jumping to address: {hex(self.cpu.pc)}")
+
+    def jmp_indirect(self):
+        indirect_address = self.cpu.read_word_le(self.cpu.pc)
+        self.cpu.pc += 2
+
+        if indirect_address < 0x0000 or indirect_address > 0xFFFF:
+            log.error(
+                f"Indirect address {indirect_address:#04X} is out of memory range!"
+            )
+            raise ValueError("Invalid indirect address!")
+
+        if (indirect_address & 0xFF) == 0xFF:
+            target_low = self.cpu.read_memory_int(indirect_address)
+            target_high = self.cpu.read_memory_int(indirect_address & 0xFF00)
+            log.debug(f"Page boundary bug triggered at address {hex(indirect_address)}")
+        else:
+            target_low = self.cpu.read_memory_int(indirect_address)
+            target_high = self.cpu.read_memory_int((indirect_address + 1) & 0xFFFF)
+
+        destination_address = (target_high << 8) | target_low
+
+        self.cpu.pc = destination_address
+        self.cpu.cycles += 5
+
+        log.debug(
+            f"Indirect Address: {indirect_address:#04X}, "
+            f"Target Low Byte: {target_low:#04X}, High Byte: {target_high:#04X}, "
+            f"Destination Address: {destination_address:#04X}"
+        )
+
+    def jsr(self):
+        target_address = self.cpu.read_word_le(self.cpu.pc)
+        return_address = self.cpu.pc + 1
+
+        stack_address_high = 0x0100 + self.cpu.sp
+        self.cpu.bus.write(stack_address_high, (return_address >> 8) & 0xFF)
+        self.cpu.sp -= 1
+
+        stack_address_low = 0x0100 + self.cpu.sp
+        self.cpu.bus.write(stack_address_low, return_address & 0xFF)
+        self.cpu.sp -= 1
+
+        self.cpu.pc = target_address
+        self.cpu.cycles += 6
+        log.debug(f"JSR - PC After: {hex(self.cpu.pc)}, SP: {hex(self.cpu.sp)}")
+
+    def rts(self):
+        if self.cpu.sp == 0xFF:
+            raise Exception("Stack underflow: RTS attempted with empty stack")
+
+        low_address = 0x0100 + ((self.cpu.sp + 1) & 0xFF)
+        high_address = 0x0100 + ((self.cpu.sp + 2) & 0xFF)
+        low_byte = self.cpu.read_memory_int(low_address)
+        high_byte = self.cpu.read_memory_int(high_address)
+
+        return_address = (high_byte << 8) | low_byte
+
+        self.cpu.sp = (self.cpu.sp + 2) & 0xFF
+        self.cpu.pc = (return_address + 1) & 0xFFFF
+        self.cpu.cycles += 6
+
+        log.debug(
+            f"RTS - Returning to address: {hex(self.cpu.pc)}, SP after RTS: {hex(self.cpu.sp)}, "
+            f"low_address: {hex(low_address)}, val: {hex(low_byte)}, "
+            f"high_address: {hex(high_address)}, val: {hex(high_byte)}"
+        )
+
+    def rti(self):
+        log.debug("Executing RTI - Return from Interrupt")
+        self.cpu.status = self.cpu.pull()
+        pc_low = self.cpu.pull()
+        pc_high = self.cpu.pull()
+        self.cpu.pc = (pc_high << 8) | pc_low
+        self.cpu.cycles += 6
+        
+        log.debug(
+            f"RTI restored PC to {hex(self.cpu.pc)}, Status={bin(self.cpu.status)}, cycle: {self.cpu.cycles}"
+        )

@@ -1,0 +1,26 @@
+# Ignorowanie plików systemowych
+.DS_Store
+
+# Ignorowanie środowiska wirtualnego
+/venv*
+/.vscode/
+/.idea/
+
+# Ignorowanie plików ROM i binarnych
+/c64rom/
+/other_c64_bin/
+/vice_rom/
+/rom/
+
+# Ignorowanie plików cache i kompilowanych
+*.log
+*.xml
+*.prof
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorowanie testów i plików roboczych
+/tests/__pycache__/
+test.py
