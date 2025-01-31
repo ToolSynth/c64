@@ -9,7 +9,7 @@ def system(bus):
     return System(bus.cpu)
 
 
-def test_brk(bus, system, time_instruction):
+def test_brk(bus, system, time_instruction) -> None:
     """Tests the brk (Break Command) instruction."""
     bus.cpu.pc = 0x2000  # Arbitrary starting address
     bus.cpu.sp = 0xFF  # Stack pointer before BRK
@@ -51,7 +51,7 @@ def test_brk(bus, system, time_instruction):
     log.info(f"[test_brk] Total: {total_time:.6f}s, Avg: {avg_time:.9f}s")
 
 
-def test_brk_ignore_irq(bus, system, time_instruction):
+def test_brk_ignore_irq(bus, system, time_instruction) -> None:
     """Tests the brk (Break Command) instruction with ignore_irq=True."""
     bus.cpu.pc = 0x3000  # Arbitrary starting address
 
@@ -77,7 +77,7 @@ def test_brk_ignore_irq(bus, system, time_instruction):
     log.info(f"[test_brk_ignore_irq] Total: {total_time:.6f}s, Avg: {avg_time:.9f}s")
 
 
-def test_nop(bus, system, time_instruction):
+def test_nop(bus, system, time_instruction) -> None:
     """Tests the nop (No Operation) instruction."""
     bus.cpu.pc = 0x1000
     initial_cycles = bus.cpu.cycles

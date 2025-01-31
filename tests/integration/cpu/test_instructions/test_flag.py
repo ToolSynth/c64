@@ -9,7 +9,7 @@ def flag(bus):
     return Flag(bus.cpu)
 
 
-def test_clc(bus, flag, time_instruction):
+def test_clc(bus, flag, time_instruction) -> None:
     """Tests the clc (Clear Carry Flag) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status |= 0x01  # Set Carry flag before execution
@@ -26,7 +26,7 @@ def test_clc(bus, flag, time_instruction):
     log.info(f"[test_clc] Total: {total_time:.6f}s, Avg: {avg_time:.9f}s")
 
 
-def test_cld(bus, flag, time_instruction):
+def test_cld(bus, flag, time_instruction) -> None:
     """Tests the cld (Clear Decimal Mode Flag) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status |= 0x08  # Set Decimal Mode flag before execution
@@ -43,7 +43,7 @@ def test_cld(bus, flag, time_instruction):
     log.info(f"[test_cld] Total: {total_time:.6f}s, Avg: {avg_time:.9f}s")
 
 
-def test_sei(bus, flag, time_instruction):
+def test_sei(bus, flag, time_instruction) -> None:
     """Tests the sei (Set Interrupt Disable Flag) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status &= ~0x04  # Clear Interrupt flag before execution
@@ -60,7 +60,7 @@ def test_sei(bus, flag, time_instruction):
     log.info(f"[test_sei] Total: {total_time:.6f}s, Avg: {avg_time:.9f}s")
 
 
-def test_cli(bus, flag, time_instruction):
+def test_cli(bus, flag, time_instruction) -> None:
     """Tests the cli (Clear Interrupt Disable Flag) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status |= 0x04  # Set Interrupt flag before execution
@@ -76,7 +76,7 @@ def test_cli(bus, flag, time_instruction):
     log.info(f"[test_cli] Total: {total_time:.6f}s, Avg: {avg_time:.9f}s")
 
 
-def test_sec(bus, flag, time_instruction):
+def test_sec(bus, flag, time_instruction) -> None:
     """Tests the sec (Set Carry Flag) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status &= ~0x01  # Clear Carry flag before execution

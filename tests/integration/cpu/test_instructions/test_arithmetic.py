@@ -9,7 +9,7 @@ def arithmetic(bus):
     return Arithmetic(bus.cpu)
 
 
-def test_sbc_immediate(bus, arithmetic, time_instruction):
+def test_sbc_immediate(bus, arithmetic, time_instruction) -> None:
     """Tests the sbc_immediate instruction and measures its execution time."""
     # Ustawienia początkowe CPU i pamięci
     bus.cpu.pc = 0x1000
@@ -47,7 +47,7 @@ def test_sbc_immediate(bus, arithmetic, time_instruction):
     )
 
 
-def test_sbc_absolute_x(bus, arithmetic, time_instruction):
+def test_sbc_absolute_x(bus, arithmetic, time_instruction) -> None:
     """Tests the sbc_absolute_x instruction and measures its execution time."""
     # Ustawienia początkowe CPU i pamięci
     bus.cpu.pc = 0x1000  # Ustawienie PC na adres 0x1000
@@ -88,7 +88,7 @@ def test_sbc_absolute_x(bus, arithmetic, time_instruction):
     )
 
 
-def test_sbc_absolute_y(bus, arithmetic, time_instruction):
+def test_sbc_absolute_y(bus, arithmetic, time_instruction) -> None:
     """Tests the sbc_absolute_y instruction and measures its execution time."""
     # Ustawienia początkowe CPU i pamięci
     bus.cpu.pc = 0x1000  # Ustawienie PC na adres 0x1000
@@ -129,7 +129,7 @@ def test_sbc_absolute_y(bus, arithmetic, time_instruction):
     )
 
 
-def test_sbc_zero_page(bus, arithmetic, time_instruction):
+def test_sbc_zero_page(bus, arithmetic, time_instruction) -> None:
     """
     Tests the sbc_zero_page (SBC Zero Page) instruction
     and measures its execution time.
@@ -169,7 +169,7 @@ def test_sbc_zero_page(bus, arithmetic, time_instruction):
     )
 
 
-def test_sbc_absolute(bus, arithmetic, time_instruction):
+def test_sbc_absolute(bus, arithmetic, time_instruction) -> None:
     """
     Tests the sbc_absolute (SBC Absolute) instruction
     and measures its execution time.
@@ -210,7 +210,7 @@ def test_sbc_absolute(bus, arithmetic, time_instruction):
     )
 
 
-def test_sbc_zero_page_x(bus, arithmetic, time_instruction):
+def test_sbc_zero_page_x(bus, arithmetic, time_instruction) -> None:
     """
     Tests the sbc_zero_page_x (SBC Zero Page,X) instruction
     and measures its execution time.
@@ -251,7 +251,7 @@ def test_sbc_zero_page_x(bus, arithmetic, time_instruction):
     )
 
 
-def test_sbc_indirect_y(bus, arithmetic, time_instruction):
+def test_sbc_indirect_y(bus, arithmetic, time_instruction) -> None:
     """
     Tests the sbc_indirect_y (SBC (Indirect),Y) instruction
     and measures its execution time.
@@ -304,7 +304,7 @@ def test_sbc_indirect_y(bus, arithmetic, time_instruction):
     )
 
 
-def test_cmp_indirect_y(bus, arithmetic, time_instruction):
+def test_cmp_indirect_y(bus, arithmetic, time_instruction) -> None:
     """
     Tests the cmp_indirect_y (CMP (Indirect),Y) instruction
     and measures its execution time.
@@ -355,7 +355,7 @@ def test_cmp_indirect_y(bus, arithmetic, time_instruction):
     )
 
 
-def test_cmp_absolute_y(bus, arithmetic, time_instruction):
+def test_cmp_absolute_y(bus, arithmetic, time_instruction) -> None:
     """
     Tests the cmp_absolute_y (CMP Absolute,Y) instruction
     and measures its execution time.
@@ -405,7 +405,7 @@ def test_cmp_absolute_y(bus, arithmetic, time_instruction):
     )
 
 
-def test_cmp_zero_page(bus, arithmetic, time_instruction):
+def test_cmp_zero_page(bus, arithmetic, time_instruction) -> None:
     """
     Tests the cmp_zero_page (CMP Zero Page) instruction
     and measures its execution time.
@@ -447,7 +447,7 @@ def test_cmp_zero_page(bus, arithmetic, time_instruction):
     )
 
 
-def test_cmp_immediate(bus, arithmetic, time_instruction):
+def test_cmp_immediate(bus, arithmetic, time_instruction) -> None:
     """
     Tests the cmp_immediate (CMP Immediate) instruction
     and measures its execution time.
@@ -488,7 +488,7 @@ def test_cmp_immediate(bus, arithmetic, time_instruction):
     )
 
 
-def test_cmp_absolute(bus, arithmetic, time_instruction):
+def test_cmp_absolute(bus, arithmetic, time_instruction) -> None:
     """
     Tests the cmp_absolute (CMP Absolute) instruction
     and measures its execution time.
@@ -532,7 +532,7 @@ def test_cmp_absolute(bus, arithmetic, time_instruction):
     )
 
 
-def test_cmp_absolute_x(bus, arithmetic, time_instruction):
+def test_cmp_absolute_x(bus, arithmetic, time_instruction) -> None:
     """
     Tests the cmp_absolute_x (CMP Absolute,X) instruction
     and measures its execution time.
@@ -582,7 +582,7 @@ def test_cmp_absolute_x(bus, arithmetic, time_instruction):
     )
 
 
-def test_bit_absolute(bus, arithmetic, time_instruction):
+def test_bit_absolute(bus, arithmetic, time_instruction) -> None:
     """
     Tests the bit_absolute (BIT Absolute) instruction
     and measures its execution time.
@@ -626,7 +626,7 @@ def test_bit_absolute(bus, arithmetic, time_instruction):
     )
 
 
-def test_bit_zero_page(bus, arithmetic, time_instruction):
+def test_bit_zero_page(bus, arithmetic, time_instruction) -> None:
     """
     Tests the bit_zero_page (BIT Zero Page) instruction
     and measures its execution time.
@@ -668,7 +668,7 @@ def test_bit_zero_page(bus, arithmetic, time_instruction):
     )
 
 
-def test_cpx_zero_page(bus, arithmetic, time_instruction):
+def test_cpx_zero_page(bus, arithmetic, time_instruction) -> None:
     """
     Tests the cpx_zero_page (CPX Zero Page) instruction
     and measures its execution time.
@@ -710,7 +710,7 @@ def test_cpx_zero_page(bus, arithmetic, time_instruction):
     )
 
 
-def test_cpx_immediate(bus, arithmetic, time_instruction):
+def test_cpx_immediate(bus, arithmetic, time_instruction) -> None:
     """
     Tests the cpx_immediate (CPX Immediate) instruction
     and measures its execution time.
@@ -751,7 +751,7 @@ def test_cpx_immediate(bus, arithmetic, time_instruction):
     )
 
 
-def test_cpx_absolute(bus, arithmetic, time_instruction):
+def test_cpx_absolute(bus, arithmetic, time_instruction) -> None:
     """
     Tests the cpx_absolute (CPX Absolute) instruction
     and measures its execution time.
@@ -795,7 +795,7 @@ def test_cpx_absolute(bus, arithmetic, time_instruction):
     )
 
 
-def test_cpy_immediate(bus, arithmetic, time_instruction):
+def test_cpy_immediate(bus, arithmetic, time_instruction) -> None:
     """
     Tests the cpy_immediate (CPY Immediate) instruction
     and measures its execution time.
@@ -836,7 +836,7 @@ def test_cpy_immediate(bus, arithmetic, time_instruction):
     )
 
 
-def test_cpy_zero_page(bus, arithmetic, time_instruction):
+def test_cpy_zero_page(bus, arithmetic, time_instruction) -> None:
     """
     Tests the cpy_zero_page (CPY Zero Page) instruction
     and measures its execution time.
@@ -878,7 +878,7 @@ def test_cpy_zero_page(bus, arithmetic, time_instruction):
     )
 
 
-def test_adc_immediate_binary(bus, arithmetic, time_instruction):
+def test_adc_immediate_binary(bus, arithmetic, time_instruction) -> None:
     """Tests the adc_immediate (ADC Immediate) instruction in binary mode."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x50  # Initial A register value
@@ -928,7 +928,7 @@ def test_adc_immediate_binary(bus, arithmetic, time_instruction):
     )
 
 
-def test_adc_immediate_bcd(bus, arithmetic, time_instruction):
+def test_adc_immediate_bcd(bus, arithmetic, time_instruction) -> None:
     """Tests the adc_immediate (ADC Immediate) instruction in BCD mode."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x25  # Initial A register value
@@ -980,7 +980,7 @@ def test_adc_immediate_bcd(bus, arithmetic, time_instruction):
     )
 
 
-def test_adc_zero_page_no_overflow(bus, arithmetic, time_instruction):
+def test_adc_zero_page_no_overflow(bus, arithmetic, time_instruction) -> None:
     """Tests the adc_zero_page (ADC Zero Page) instruction without overflow."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x20  # Initial A register value
@@ -1028,7 +1028,7 @@ def test_adc_zero_page_no_overflow(bus, arithmetic, time_instruction):
     )
 
 
-def test_adc_zero_page_overflow(bus, arithmetic, time_instruction):
+def test_adc_zero_page_overflow(bus, arithmetic, time_instruction) -> None:
     """Tests the adc_zero_page (ADC Zero Page) instruction with overflow."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x7F  # Initial A register value (near max positive)
@@ -1076,7 +1076,7 @@ def test_adc_zero_page_overflow(bus, arithmetic, time_instruction):
     )
 
 
-def test_adc_absolute_y_no_page_cross(bus, arithmetic, time_instruction):
+def test_adc_absolute_y_no_page_cross(bus, arithmetic, time_instruction) -> None:
     """Tests the adc_absolute_y (ADC Absolute,Y) instruction without page crossing."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x20  # Initial A register value
@@ -1128,7 +1128,7 @@ def test_adc_absolute_y_no_page_cross(bus, arithmetic, time_instruction):
     )
 
 
-def test_adc_absolute_y_page_cross(bus, arithmetic, time_instruction):
+def test_adc_absolute_y_page_cross(bus, arithmetic, time_instruction) -> None:
     """Tests the adc_absolute_y (ADC Absolute,Y) instruction with page crossing."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x50  # Initial A register value

@@ -9,7 +9,7 @@ def stack(bus):
     return Stack(bus.cpu)
 
 
-def test_pha(bus, stack, time_instruction):
+def test_pha(bus, stack, time_instruction) -> None:
     """Tests the pha (Push Accumulator) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x42  # Accumulator value
@@ -40,7 +40,7 @@ def test_pha(bus, stack, time_instruction):
     )
 
 
-def test_pla(bus, stack, time_instruction):
+def test_pla(bus, stack, time_instruction) -> None:
     """Tests the pla (Pull Accumulator) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.sp = 0xFC  # Stack pointer before pull
@@ -79,7 +79,7 @@ def test_pla(bus, stack, time_instruction):
     )
 
 
-def test_txs(bus, stack, time_instruction):
+def test_txs(bus, stack, time_instruction) -> None:
     """Tests the txs (Transfer X to Stack Pointer) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0xAB  # X register value
@@ -100,7 +100,7 @@ def test_txs(bus, stack, time_instruction):
     )
 
 
-def test_php(bus, stack, time_instruction):
+def test_php(bus, stack, time_instruction) -> None:
     """Tests the php (Push Processor Status) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.sp = 0xFD  # Initial SP
@@ -131,7 +131,7 @@ def test_php(bus, stack, time_instruction):
     )
 
 
-def test_plp(bus, stack, time_instruction):
+def test_plp(bus, stack, time_instruction) -> None:
     """Tests the plp (Pull Processor Status) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.sp = 0xFC  # Stack pointer before pull
@@ -160,7 +160,7 @@ def test_plp(bus, stack, time_instruction):
     )
 
 
-def test_tsx(bus, stack, time_instruction):
+def test_tsx(bus, stack, time_instruction) -> None:
     """Tests the tsx (Transfer Stack Pointer to X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.sp = 0x77  # Initial stack pointer

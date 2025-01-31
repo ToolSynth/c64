@@ -4,12 +4,12 @@ from src.cpu.instructions.jump import Jump
 from src.utils.log_setup import log
 
 
-@pytest.fixture()
+@pytest.fixture
 def jump(bus):
     return Jump(bus.cpu)
 
 
-def test_jmp_indirect_x(bus, jump, time_instruction):
+def test_jmp_indirect_x(bus, jump, time_instruction) -> None:
     """
     Tests the jmp_indirect_x (JMP (Indirect, X)) instruction
     and measures its execution time.
@@ -36,7 +36,7 @@ def test_jmp_indirect_x(bus, jump, time_instruction):
     )
 
 
-def test_jmp_absolute(bus, jump, time_instruction):
+def test_jmp_absolute(bus, jump, time_instruction) -> None:
     """
     Tests the jmp_absolute (JMP Absolute) instruction.
     - At PC=0x0000, we set the target_address = 0xABCD (low=0xCD, high=0xAB)
@@ -60,7 +60,7 @@ def test_jmp_absolute(bus, jump, time_instruction):
     )
 
 
-def test_jmp_indirect_normal(bus, jump, time_instruction):
+def test_jmp_indirect_normal(bus, jump, time_instruction) -> None:
     """
     Tests the jmp_indirect (JMP (Absolute)) instruction.
     - At PC=0x1000, we set a pointer (0x3000) => low=0x00, high=0x30
@@ -87,7 +87,7 @@ def test_jmp_indirect_normal(bus, jump, time_instruction):
     )
 
 
-def test_jmp_indirect_page_boundary_bug(bus, jump):
+def test_jmp_indirect_page_boundary_bug(bus, jump) -> None:
     """
     Tests the 'Page boundary bug' in the jmp_indirect instruction:
     - If the pointer is at the end of a page (e.g., 0x30FF), the high byte
@@ -112,7 +112,7 @@ def test_jmp_indirect_page_boundary_bug(bus, jump):
     )
 
 
-def test_jsr(bus, jump, time_instruction):
+def test_jsr(bus, jump, time_instruction) -> None:
     """
     Tests the jsr (Jump to SubRoutine) instruction.
     - At PC=0x1000, we set the target address 0x3000 (low=0x00, high=0x30)
@@ -139,7 +139,7 @@ def test_jsr(bus, jump, time_instruction):
     )
 
 
-def test_rts_stack_underflow(bus, jump):
+def test_rts_stack_underflow(bus, jump) -> None:
     """
     Tests stack underflow error when executing RTS,
     when sp = 0xFF (stack is empty). An exception is expected.
@@ -150,7 +150,7 @@ def test_rts_stack_underflow(bus, jump):
         jump.rts()
 
 
-def test_rti(bus, jump):
+def test_rti(bus, jump) -> None:
     """
     Tests the rti (Return from Interrupt) instruction.
     - RTI restores the status register (P) and PC from three bytes on the stack.

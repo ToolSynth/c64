@@ -8,7 +8,7 @@ def register(bus):
     return Register(bus.cpu)
 
 
-def test_tax(bus, register, time_instruction):
+def test_tax(bus, register, time_instruction) -> None:
     """Tests the tax (Transfer Accumulator to X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x42  # Accumulator value
@@ -34,7 +34,7 @@ def test_tax(bus, register, time_instruction):
     assert bus.cpu.cycles == 2, "TAX should take 2 cycles"
 
 
-def test_tay(bus, register, time_instruction):
+def test_tay(bus, register, time_instruction) -> None:
     """Tests the tay (Transfer Accumulator to Y) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x99  # Accumulator value
@@ -60,7 +60,7 @@ def test_tay(bus, register, time_instruction):
     assert bus.cpu.cycles == 2, "TAY should take 2 cycles"
 
 
-def test_txa(bus, register, time_instruction):
+def test_txa(bus, register, time_instruction) -> None:
     """Tests the txa (Transfer X to Accumulator) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x55  # X register value
@@ -75,7 +75,7 @@ def test_txa(bus, register, time_instruction):
     assert bus.cpu.cycles == 2, "TXA should take 2 cycles"
 
 
-def test_tya(bus, register, time_instruction):
+def test_tya(bus, register, time_instruction) -> None:
     """Tests the tya (Transfer Y to Accumulator) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0xAA  # Y register value
@@ -90,7 +90,7 @@ def test_tya(bus, register, time_instruction):
     assert bus.cpu.cycles == 2, "TYA should take 2 cycles"
 
 
-def test_dex(bus, register, time_instruction):
+def test_dex(bus, register, time_instruction) -> None:
     """Tests the dex (Decrement X Register) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x01  # X register value
@@ -116,7 +116,7 @@ def test_dex(bus, register, time_instruction):
     assert bus.cpu.cycles == 2, "DEX should take 2 cycles"
 
 
-def test_dey(bus, register, time_instruction):
+def test_dey(bus, register, time_instruction) -> None:
     """Tests the dey (Decrement Y Register) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0x80  # Y register value
@@ -142,7 +142,7 @@ def test_dey(bus, register, time_instruction):
     assert bus.cpu.cycles == 2, "DEY should take 2 cycles"
 
 
-def test_inx(bus, register, time_instruction):
+def test_inx(bus, register, time_instruction) -> None:
     """Tests the inx (Increment X Register) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0xFF  # X register value
@@ -168,7 +168,7 @@ def test_inx(bus, register, time_instruction):
     assert bus.cpu.cycles == 2, "INX should take 2 cycles"
 
 
-def test_iny(bus, register, time_instruction):
+def test_iny(bus, register, time_instruction) -> None:
     """Tests the iny (Increment Y Register) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0x7F  # Y register value

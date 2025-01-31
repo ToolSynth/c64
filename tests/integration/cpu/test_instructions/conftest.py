@@ -5,7 +5,7 @@ import pytest
 from src.bus.bus import Bus
 
 
-@pytest.fixture()
+@pytest.fixture
 def bus():
     """
     Prosta atrapa CPU, zawiera minimalną logikę potrzebną do testowania

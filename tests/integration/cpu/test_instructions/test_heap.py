@@ -9,7 +9,7 @@ def heap(bus):
     return Heap(bus.cpu)
 
 
-def test_lda_zero_page_non_zero(bus, heap, time_instruction):
+def test_lda_zero_page_non_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_zero_page (LDA Zero Page) instruction with a non-zero value."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x00  # Początkowa wartość A
@@ -48,7 +48,7 @@ def test_lda_zero_page_non_zero(bus, heap, time_instruction):
     )
 
 
-def test_lda_zero_page_zero(bus, heap, time_instruction):
+def test_lda_zero_page_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_zero_page (LDA Zero Page) instruction with a zero value."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0xFF  # Początkowa wartość A
@@ -87,7 +87,7 @@ def test_lda_zero_page_zero(bus, heap, time_instruction):
     )
 
 
-def test_lda_zeropage_x_non_zero(bus, heap, time_instruction):
+def test_lda_zeropage_x_non_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_zeropage_x (LDA Zero Page,X) instruction with a non-zero value."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x00  # Początkowa wartość A
@@ -128,7 +128,7 @@ def test_lda_zeropage_x_non_zero(bus, heap, time_instruction):
     )
 
 
-def test_lda_zeropage_x_zero(bus, heap, time_instruction):
+def test_lda_zeropage_x_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_zeropage_x (LDA Zero Page,X) instruction with a zero value."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0xFF  # Początkowa wartość A
@@ -165,7 +165,7 @@ def test_lda_zeropage_x_zero(bus, heap, time_instruction):
     )
 
 
-def test_lda_indirect_y_no_page_cross(bus, heap, time_instruction):
+def test_lda_indirect_y_no_page_cross(bus, heap, time_instruction) -> None:
     """Tests the lda_indirect_y (LDA (Indirect),Y) instruction without page crossing."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x00  # Początkowa wartość A
@@ -211,7 +211,7 @@ def test_lda_indirect_y_no_page_cross(bus, heap, time_instruction):
     )
 
 
-def test_lda_indirect_y_page_cross(bus, heap, time_instruction):
+def test_lda_indirect_y_page_cross(bus, heap, time_instruction) -> None:
     """Tests the lda_indirect_y (LDA (Indirect),Y) instruction with page crossing."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x00  # Początkowa wartość A
@@ -257,7 +257,7 @@ def test_lda_indirect_y_page_cross(bus, heap, time_instruction):
     )
 
 
-def test_lda_absolute_non_zero(bus, heap, time_instruction):
+def test_lda_absolute_non_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_absolute (LDA Absolute) instruction with a non-zero value."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x00  # Initial value of A
@@ -298,7 +298,7 @@ def test_lda_absolute_non_zero(bus, heap, time_instruction):
     )
 
 
-def test_lda_absolute_zero(bus, heap, time_instruction):
+def test_lda_absolute_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_absolute (LDA Absolute) instruction with a zero value."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0xFF  # Initial value of A
@@ -339,7 +339,7 @@ def test_lda_absolute_zero(bus, heap, time_instruction):
     )
 
 
-def test_lda_immediate_non_zero(bus, heap, time_instruction):
+def test_lda_immediate_non_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_immediate (LDA Immediate) instruction with a non-zero value."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x00  # Initial value of A
@@ -377,7 +377,7 @@ def test_lda_immediate_non_zero(bus, heap, time_instruction):
     )
 
 
-def test_lda_immediate_zero(bus, heap, time_instruction):
+def test_lda_immediate_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_immediate (LDA Immediate) instruction with a zero value."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0xFF  # Initial value of A
@@ -415,7 +415,7 @@ def test_lda_immediate_zero(bus, heap, time_instruction):
     )
 
 
-def test_lda_absolute_x(bus, heap, time_instruction):
+def test_lda_absolute_x(bus, heap, time_instruction) -> None:
     """Tests the lda_absolute_x (LDA Absolute,X) instruction with and without page crossing."""
     # --- Setup test without page crossing ---
     bus.cpu.pc = 0x1000
@@ -463,7 +463,7 @@ def test_lda_absolute_x(bus, heap, time_instruction):
     )
 
 
-def test_lda_absolute_x_page_cross(bus, heap, time_instruction):
+def test_lda_absolute_x_page_cross(bus, heap, time_instruction) -> None:
     # --- Setup test with page crossing ---
     bus.cpu.pc = 0x2000
     bus.cpu.a = 0x00
@@ -511,7 +511,7 @@ def test_lda_absolute_x_page_cross(bus, heap, time_instruction):
     )
 
 
-def test_lda_absolute_y_no_page_cross(bus, heap, time_instruction):
+def test_lda_absolute_y_no_page_cross(bus, heap, time_instruction) -> None:
     """Tests the lda_absolute_y (LDA Absolute,Y) instruction without page crossing."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x00  # Initial value of A
@@ -558,7 +558,7 @@ def test_lda_absolute_y_no_page_cross(bus, heap, time_instruction):
     )
 
 
-def test_lda_absolute_y_page_cross(bus, heap, time_instruction):
+def test_lda_absolute_y_page_cross(bus, heap, time_instruction) -> None:
     """Tests the lda_absolute_y (LDA Absolute,Y) instruction with page crossing."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x00  # Initial value of A
@@ -607,7 +607,7 @@ def test_lda_absolute_y_page_cross(bus, heap, time_instruction):
     )
 
 
-def test_sta_zeropage_x(bus, heap, time_instruction):
+def test_sta_zeropage_x(bus, heap, time_instruction) -> None:
     """Tests the sta_zeropage_x (STA Zero Page,X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x55  # Value to store
@@ -636,7 +636,7 @@ def test_sta_zeropage_x(bus, heap, time_instruction):
     )
 
 
-def test_sta_indirect_y(bus, heap, time_instruction):
+def test_sta_indirect_y(bus, heap, time_instruction) -> None:
     """Tests the sta_indirect_y (STA (Indirect),Y) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0xAA  # Value to store
@@ -670,7 +670,7 @@ def test_sta_indirect_y(bus, heap, time_instruction):
     )
 
 
-def test_sta_absolute_y(bus, heap, time_instruction):
+def test_sta_absolute_y(bus, heap, time_instruction) -> None:
     """Tests the sta_absolute_y (STA Absolute,Y) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x77  # Value to store
@@ -703,7 +703,7 @@ def test_sta_absolute_y(bus, heap, time_instruction):
     )
 
 
-def test_sta_absolute(bus, heap, time_instruction):
+def test_sta_absolute(bus, heap, time_instruction) -> None:
     """Tests the sta_absolute (STA Absolute) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x99  # Value to store
@@ -732,7 +732,7 @@ def test_sta_absolute(bus, heap, time_instruction):
     )
 
 
-def test_sta_absolute_x(bus, heap, time_instruction):
+def test_sta_absolute_x(bus, heap, time_instruction) -> None:
     """Tests the sta_absolute_x (STA Absolute,X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x77  # Value to store
@@ -765,7 +765,7 @@ def test_sta_absolute_x(bus, heap, time_instruction):
     )
 
 
-def test_ldx_zero_page(bus, heap, time_instruction):
+def test_ldx_zero_page(bus, heap, time_instruction) -> None:
     """Tests the ldx_zero_page (LDX Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x00  # Initial value of X
@@ -804,7 +804,7 @@ def test_ldx_zero_page(bus, heap, time_instruction):
     )
 
 
-def test_ldx_absolute(bus, heap, time_instruction):
+def test_ldx_absolute(bus, heap, time_instruction) -> None:
     """Tests the ldx_absolute (LDX Absolute) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x00  # Initial value of X
@@ -845,7 +845,7 @@ def test_ldx_absolute(bus, heap, time_instruction):
     )
 
 
-def test_ldx_immediate(bus, heap, time_instruction):
+def test_ldx_immediate(bus, heap, time_instruction) -> None:
     """Tests the ldx_immediate (LDX Immediate) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x00  # Initial value of X
@@ -870,7 +870,7 @@ def test_ldx_immediate(bus, heap, time_instruction):
     )
 
 
-def test_ldx_absolute_y(bus, heap, time_instruction):
+def test_ldx_absolute_y(bus, heap, time_instruction) -> None:
     """Tests the ldx_absolute_y (LDX Absolute,Y) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x00
@@ -908,7 +908,7 @@ def test_ldx_absolute_y(bus, heap, time_instruction):
     )
 
 
-def test_stx_zero_page_y(bus, heap, time_instruction):
+def test_stx_zero_page_y(bus, heap, time_instruction) -> None:
     """Tests the stx_zero_page_y (STX Zero Page,Y) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x77  # Value to store
@@ -937,7 +937,7 @@ def test_stx_zero_page_y(bus, heap, time_instruction):
     )
 
 
-def test_stx_zero_page(bus, heap, time_instruction):
+def test_stx_zero_page(bus, heap, time_instruction) -> None:
     """Tests the stx_zero_page (STX Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x99  # Value to store
@@ -962,7 +962,7 @@ def test_stx_zero_page(bus, heap, time_instruction):
     )
 
 
-def test_stx_absolute(bus, heap, time_instruction):
+def test_stx_absolute(bus, heap, time_instruction) -> None:
     """Tests the stx_absolute (STX Absolute) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x55  # Value to store
@@ -991,7 +991,7 @@ def test_stx_absolute(bus, heap, time_instruction):
     )
 
 
-def test_ldy_zero_page(bus, heap, time_instruction):
+def test_ldy_zero_page(bus, heap, time_instruction) -> None:
     """Tests the ldy_zero_page (LDY Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0x00  # Initial value of Y
@@ -1030,7 +1030,7 @@ def test_ldy_zero_page(bus, heap, time_instruction):
     )
 
 
-def test_ldy_absolute(bus, heap, time_instruction):
+def test_ldy_absolute(bus, heap, time_instruction) -> None:
     """Tests the ldy_absolute (LDY Absolute) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0x00  # Initial value of Y
@@ -1071,7 +1071,7 @@ def test_ldy_absolute(bus, heap, time_instruction):
     )
 
 
-def test_ldy_immediate(bus, heap, time_instruction):
+def test_ldy_immediate(bus, heap, time_instruction) -> None:
     """Tests the ldy_immediate (LDY Immediate) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0x00  # Initial value of Y
@@ -1096,7 +1096,7 @@ def test_ldy_immediate(bus, heap, time_instruction):
     )
 
 
-def test_ldy_absolute_x(bus, heap, time_instruction):
+def test_ldy_absolute_x(bus, heap, time_instruction) -> None:
     """Tests the ldy_absolute_x (LDY Absolute,X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0x00
@@ -1134,7 +1134,7 @@ def test_ldy_absolute_x(bus, heap, time_instruction):
     )
 
 
-def test_sty_absolute(bus, heap, time_instruction):
+def test_sty_absolute(bus, heap, time_instruction) -> None:
     """Tests the sty_absolute (STY Absolute) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0x77  # Value to store
@@ -1163,7 +1163,7 @@ def test_sty_absolute(bus, heap, time_instruction):
     )
 
 
-def test_sty_zero_page_x(bus, heap, time_instruction):
+def test_sty_zero_page_x(bus, heap, time_instruction) -> None:
     """Tests the sty_zero_page_x (STY Zero Page,X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0x99  # Value to store
@@ -1192,7 +1192,7 @@ def test_sty_zero_page_x(bus, heap, time_instruction):
     )
 
 
-def test_sty_zero_page(bus, heap, time_instruction):
+def test_sty_zero_page(bus, heap, time_instruction) -> None:
     """Tests the sty_zero_page (STY Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0x55  # Value to store
@@ -1217,7 +1217,7 @@ def test_sty_zero_page(bus, heap, time_instruction):
     )
 
 
-def test_dec_zero_page(bus, heap, time_instruction):
+def test_dec_zero_page(bus, heap, time_instruction) -> None:
     """Tests the dec_zero_page (DEC Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear status flags
@@ -1255,7 +1255,7 @@ def test_dec_zero_page(bus, heap, time_instruction):
     )
 
 
-def test_dec_absolute(bus, heap, time_instruction):
+def test_dec_absolute(bus, heap, time_instruction) -> None:
     """Tests the dec_absolute (DEC Absolute) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear status flags
@@ -1295,7 +1295,7 @@ def test_dec_absolute(bus, heap, time_instruction):
     )
 
 
-def test_inc_absolute_x(bus, heap, time_instruction):
+def test_inc_absolute_x(bus, heap, time_instruction) -> None:
     """Tests the inc_absolute_x (INC Absolute,X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x05  # X register offset
@@ -1337,7 +1337,7 @@ def test_inc_absolute_x(bus, heap, time_instruction):
     )
 
 
-def test_inc_zero_page_x(bus, heap, time_instruction):
+def test_inc_zero_page_x(bus, heap, time_instruction) -> None:
     """Tests the inc_zero_page_x (INC Zero Page,X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x04  # X register offset
@@ -1377,7 +1377,7 @@ def test_inc_zero_page_x(bus, heap, time_instruction):
     )
 
 
-def test_inc_zero_page(bus, heap, time_instruction):
+def test_inc_zero_page(bus, heap, time_instruction) -> None:
     """Tests the inc_zero_page (INC Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear status flags
@@ -1415,7 +1415,7 @@ def test_inc_zero_page(bus, heap, time_instruction):
     )
 
 
-def test_inc_absolute(bus, heap, time_instruction):
+def test_inc_absolute(bus, heap, time_instruction) -> None:
     """Tests the inc_absolute (INC Absolute) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear status flags

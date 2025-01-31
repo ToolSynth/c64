@@ -9,7 +9,7 @@ def branch(bus):
     return Branch(bus.cpu)
 
 
-def test_beq(bus, branch, time_instruction):
+def test_beq(bus, branch, time_instruction) -> None:
     """Tests the beq (Branch if Equal) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x02  # Set Z flag (Zero = 1)
@@ -37,7 +37,7 @@ def test_beq(bus, branch, time_instruction):
     )
 
 
-def test_bne(bus, branch, time_instruction):
+def test_bne(bus, branch, time_instruction) -> None:
     """Tests the bne (Branch if Not Equal) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear Z flag (Zero = 0)
@@ -57,7 +57,7 @@ def test_bne(bus, branch, time_instruction):
     assert bus.cpu.cycles == expected_cycles, "BNE should take 3 cycles when branching"
 
 
-def test_bpl(bus, branch, time_instruction):
+def test_bpl(bus, branch, time_instruction) -> None:
     """Tests the bpl (Branch if Positive) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear N flag (Negative = 0)
@@ -85,7 +85,7 @@ def test_bpl(bus, branch, time_instruction):
     )
 
 
-def test_bpl_page_cross(bus, branch, time_instruction):
+def test_bpl_page_cross(bus, branch, time_instruction) -> None:
     """Tests the BPL instruction with a page crossing."""
     bus.cpu.pc = 0x10F0  # Near the page boundary
     bus.cpu.status = 0x00  # Clear N flag (Negative = 0)
@@ -115,7 +115,7 @@ def test_bpl_page_cross(bus, branch, time_instruction):
     )
 
 
-def test_bmi(bus, branch, time_instruction):
+def test_bmi(bus, branch, time_instruction) -> None:
     """Tests the bmi (Branch if Minus) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x80  # Set N flag (Negative = 1)
@@ -143,7 +143,7 @@ def test_bmi(bus, branch, time_instruction):
     )
 
 
-def test_bvs(bus, branch, time_instruction):
+def test_bvs(bus, branch, time_instruction) -> None:
     """Tests the bvs (Branch if Overflow Set) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x40  # Set V flag (Overflow = 1)
@@ -171,7 +171,7 @@ def test_bvs(bus, branch, time_instruction):
     )
 
 
-def test_bcc(bus, branch, time_instruction):
+def test_bcc(bus, branch, time_instruction) -> None:
     """Tests the bcc (Branch if Carry Clear) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear C flag (Carry = 0)
@@ -199,7 +199,7 @@ def test_bcc(bus, branch, time_instruction):
     )
 
 
-def test_bcc_page_cross(bus, branch, time_instruction):
+def test_bcc_page_cross(bus, branch, time_instruction) -> None:
     """Tests the BCC instruction with a page crossing."""
     bus.cpu.pc = 0x10F0  # Near the page boundary
     bus.cpu.status = 0x00  # Clear C flag (Carry = 0)
@@ -229,7 +229,7 @@ def test_bcc_page_cross(bus, branch, time_instruction):
     )
 
 
-def test_bcs(bus, branch, time_instruction):
+def test_bcs(bus, branch, time_instruction) -> None:
     """Tests the BCS (Branch if Carry Set) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x01  # Set C flag (Carry = 1)
@@ -257,7 +257,7 @@ def test_bcs(bus, branch, time_instruction):
     )
 
 
-def test_bcs_page_cross(bus, branch, time_instruction):
+def test_bcs_page_cross(bus, branch, time_instruction) -> None:
     """Tests the BCS instruction with a page crossing."""
     bus.cpu.pc = 0x10F0  # Near the page boundary
     bus.cpu.status = 0x01  # Set C flag (Carry = 1)
@@ -287,7 +287,7 @@ def test_bcs_page_cross(bus, branch, time_instruction):
     )
 
 
-def test_bvc(bus, branch, time_instruction):
+def test_bvc(bus, branch, time_instruction) -> None:
     """Tests the BVC (Branch if Overflow Clear) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear V flag (Overflow = 0)
@@ -315,7 +315,7 @@ def test_bvc(bus, branch, time_instruction):
     )
 
 
-def test_bvc_page_cross(bus, branch, time_instruction):
+def test_bvc_page_cross(bus, branch, time_instruction) -> None:
     """Tests the BVC instruction with a page crossing."""
     bus.cpu.pc = 0x10F0  # Near the page boundary
     bus.cpu.status = 0x00  # Clear V flag (Overflow = 0)

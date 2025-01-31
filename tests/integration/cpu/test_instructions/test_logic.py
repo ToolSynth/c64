@@ -9,7 +9,7 @@ def logic(bus):
     return Logic(bus.cpu)
 
 
-def test_and_indirect_y(bus, logic, time_instruction):
+def test_and_indirect_y(bus, logic, time_instruction) -> None:
     """Tests the and_indirect_y (AND Indirect,Y) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0x04  # Y register offset
@@ -51,7 +51,7 @@ def test_and_indirect_y(bus, logic, time_instruction):
     )
 
 
-def test_and_immediate(bus, logic, time_instruction):
+def test_and_immediate(bus, logic, time_instruction) -> None:
     """Tests the and_immediate (AND Immediate) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0xAA  # Initial A register value
@@ -88,7 +88,7 @@ def test_and_immediate(bus, logic, time_instruction):
     )
 
 
-def test_and_zero_page(bus, logic, time_instruction):
+def test_and_zero_page(bus, logic, time_instruction) -> None:
     """Tests the and_zero_page (AND Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x3C  # Initial A register value
@@ -126,7 +126,7 @@ def test_and_zero_page(bus, logic, time_instruction):
     )
 
 
-def test_asl_accumulator(bus, logic, time_instruction):
+def test_asl_accumulator(bus, logic, time_instruction) -> None:
     """Tests the asl_accumulator (Arithmetic Shift Left on Accumulator) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x81  # Initial A register value (10000001 in binary)
@@ -165,7 +165,7 @@ def test_asl_accumulator(bus, logic, time_instruction):
     )
 
 
-def test_asl_zero_page(bus, logic, time_instruction):
+def test_asl_zero_page(bus, logic, time_instruction) -> None:
     """Tests the asl_zero_page (Arithmetic Shift Left on Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear status flags
@@ -207,7 +207,7 @@ def test_asl_zero_page(bus, logic, time_instruction):
     )
 
 
-def test_asl_zero_page_x(bus, logic, time_instruction):
+def test_asl_zero_page_x(bus, logic, time_instruction) -> None:
     """Tests the asl_zero_page_x (Arithmetic Shift Left on Zero Page,X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x05  # X register offset
@@ -251,7 +251,7 @@ def test_asl_zero_page_x(bus, logic, time_instruction):
     )
 
 
-def test_eor_zero_page_x(bus, logic, time_instruction):
+def test_eor_zero_page_x(bus, logic, time_instruction) -> None:
     """Tests the eor_zero_page_x (EOR Zero Page,X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x05  # X register offset
@@ -291,7 +291,7 @@ def test_eor_zero_page_x(bus, logic, time_instruction):
     )
 
 
-def test_eor_immediate(bus, logic, time_instruction):
+def test_eor_immediate(bus, logic, time_instruction) -> None:
     """Tests the eor_immediate (EOR Immediate) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x0F  # Initial A register value
@@ -328,7 +328,7 @@ def test_eor_immediate(bus, logic, time_instruction):
     )
 
 
-def test_eor_indirect_x(bus, logic, time_instruction):
+def test_eor_indirect_x(bus, logic, time_instruction) -> None:
     """Tests the eor_indirect_x (EOR Indirect,X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x04  # X register offset
@@ -371,7 +371,7 @@ def test_eor_indirect_x(bus, logic, time_instruction):
     )
 
 
-def test_lsr_accumulator(bus, logic, time_instruction):
+def test_lsr_accumulator(bus, logic, time_instruction) -> None:
     """Tests the lsr_accumulator (Logical Shift Right on Accumulator) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x81  # Initial A register value (10000001 in binary)
@@ -407,7 +407,7 @@ def test_lsr_accumulator(bus, logic, time_instruction):
     )
 
 
-def test_lsr_zero_page(bus, logic, time_instruction):
+def test_lsr_zero_page(bus, logic, time_instruction) -> None:
     """Tests the lsr_zero_page (Logical Shift Right on Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear status flags
@@ -446,7 +446,7 @@ def test_lsr_zero_page(bus, logic, time_instruction):
     )
 
 
-def test_ora_zero_page(bus, logic, time_instruction):
+def test_ora_zero_page(bus, logic, time_instruction) -> None:
     """Tests the ora_zero_page (Logical OR with Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x12  # Initial A register value
@@ -484,7 +484,7 @@ def test_ora_zero_page(bus, logic, time_instruction):
     )
 
 
-def test_ora_absolute(bus, logic, time_instruction):
+def test_ora_absolute(bus, logic, time_instruction) -> None:
     """Tests the ora_absolute (Logical OR with Absolute Addressing) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x0F  # Initial A register value
@@ -524,7 +524,7 @@ def test_ora_absolute(bus, logic, time_instruction):
     )
 
 
-def test_ora_immediate(bus, logic, time_instruction):
+def test_ora_immediate(bus, logic, time_instruction) -> None:
     """Tests the ora_immediate (Logical OR with Immediate Value) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x44  # Initial A register value
@@ -561,7 +561,7 @@ def test_ora_immediate(bus, logic, time_instruction):
     )
 
 
-def test_ora_indirect_indexed(bus, logic, time_instruction):
+def test_ora_indirect_indexed(bus, logic, time_instruction) -> None:
     """Tests the ora_indirect_indexed (Logical OR with Indirect Indexed Addressing) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.y = 0x05  # Y register offset
@@ -607,7 +607,7 @@ def test_ora_indirect_indexed(bus, logic, time_instruction):
     )
 
 
-def test_rol_accumulator(bus, logic, time_instruction):
+def test_rol_accumulator(bus, logic, time_instruction) -> None:
     """Tests the rol_accumulator (Rotate Left on Accumulator) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0b10000001  # Initial A register value
@@ -648,7 +648,7 @@ def test_rol_accumulator(bus, logic, time_instruction):
     )
 
 
-def test_rol_zero_page(bus, logic, time_instruction):
+def test_rol_zero_page(bus, logic, time_instruction) -> None:
     """Tests the rol_zero_page (Rotate Left on Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear status flags, Carry = 0
@@ -692,7 +692,7 @@ def test_rol_zero_page(bus, logic, time_instruction):
     )
 
 
-def test_ror_accumulator(bus, logic, time_instruction):
+def test_ror_accumulator(bus, logic, time_instruction) -> None:
     """Tests the ror_accumulator (Rotate Right on Accumulator) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0b10000001  # Initial A register value
@@ -733,7 +733,7 @@ def test_ror_accumulator(bus, logic, time_instruction):
     )
 
 
-def test_ror_zero_page(bus, logic, time_instruction):
+def test_ror_zero_page(bus, logic, time_instruction) -> None:
     """Tests the ror_zero_page (Rotate Right on Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear status flags, Carry = 0
@@ -774,7 +774,7 @@ def test_ror_zero_page(bus, logic, time_instruction):
     )
 
 
-def test_ror_zero_page_x(bus, logic, time_instruction):
+def test_ror_zero_page_x(bus, logic, time_instruction) -> None:
     """Tests the ror_zero_page_x (Rotate Right on Zero Page,X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x05  # X register offset
@@ -818,7 +818,7 @@ def test_ror_zero_page_x(bus, logic, time_instruction):
     )
 
 
-def test_ror_absolute(bus, logic, time_instruction):
+def test_ror_absolute(bus, logic, time_instruction) -> None:
     """Tests the ror_absolute (Rotate Right on Absolute Addressing) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.status = 0x00  # Clear status flags, Carry = 0
@@ -843,7 +843,7 @@ def test_ror_absolute(bus, logic, time_instruction):
     )
 
 
-def test_lsr_zero_page_x(bus, logic, time_instruction):
+def test_lsr_zero_page_x(bus, logic, time_instruction) -> None:
     """Tests the lsr_zero_page_x (Logical Shift Right on Zero Page,X) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.x = 0x05  # X register offset
@@ -887,7 +887,7 @@ def test_lsr_zero_page_x(bus, logic, time_instruction):
     )
 
 
-def test_eor_zero_page(bus, logic, time_instruction):
+def test_eor_zero_page(bus, logic, time_instruction) -> None:
     """Tests the eor_zero_page (Exclusive OR with Zero Page) instruction."""
     bus.cpu.pc = 0x1000
     bus.cpu.a = 0x3C  # Initial A register value

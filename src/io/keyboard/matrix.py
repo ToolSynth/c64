@@ -1,5 +1,5 @@
 c64_keymap = {
-    "a": 0x41,  # 'a' na klawiaturze host -> odpowiedni kod C64
+    "a": 0x41,
     "b": 0x42,
     "c": 0x43,
     "d": 0x44,
@@ -25,7 +25,7 @@ c64_keymap = {
     "x": 0x58,
     "y": 0x59,
     "z": 0x5A,
-    "1": 0x31,  # '1' na klawiaturze host -> odpowiedni kod C64
+    "1": 0x31,
     "2": 0x32,
     "3": 0x33,
     "4": 0x34,
@@ -35,14 +35,14 @@ c64_keymap = {
     "8": 0x38,
     "9": 0x39,
     "0": 0x30,
-    "return": 0x0D,  # 'Enter' na klawiaturze host -> odpowiedni kod C64
-    "space": 0x20,  # Spacja
-    "backspace": 0x14,  # Backspace
-    "shift": 0x80,  # Shift (jako przykład, realny kod C64 może być inny)
-    "ctrl": 0x81,  # Control (przykład)
-    "alt": 0x82,  # Alt (przykład)
-    "escape": 0x1B,  # Escape
-    "arrow_up": 0x91,  # Strzałka w górę (przykład)
+    "return": 0x0D,
+    "space": 0x20,
+    "backspace": 0x14,
+    "shift": 0x80,
+    "ctrl": 0x81,
+    "alt": 0x82,
+    "escape": 0x1B,
+    "arrow_up": 0x91,
     "arrow_down": 0x92,
     "arrow_left": 0x93,
     "arrow_right": 0x94,
