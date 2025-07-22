@@ -1,0 +1,16 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/c64rom
+/other_c64_bin
+/venv*
+/vice_rom
+*.log
+*.xml
+.vscode/
+/rom*
+*.prof
+__pycache__/
+*.pyc
+.idea/
+*.json
