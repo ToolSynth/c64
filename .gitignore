@@ -1,0 +1,14 @@
+*.DS_Store
+/venv*
+/.vscode/
+rom/*
+*.log
+*.xml
+*.prof
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.json
+.*
+test.py
