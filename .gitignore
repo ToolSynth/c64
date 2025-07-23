@@ -9,4 +9,6 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.json
+.*
 test.py
