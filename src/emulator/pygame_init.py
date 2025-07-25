@@ -2,8 +2,8 @@ from typing import TYPE_CHECKING
 
 import pygame
 
-from src.io.keyboard.keyboard import KeyboardKernelInterface
-from src.io.loader_prg import BasicPrgLoader
+from src.io_hw.keyboard.keyboard import KeyboardKernelInterface
+from src.io_hw.loader_prg import BasicPrgLoader
 from src.utils.log_setup import log
 from src.vic.render import Render
 

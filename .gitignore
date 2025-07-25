@@ -5,7 +5,7 @@ rom/*
 *.log
 *.xml
 *.prof
-__pycache__/
+__pycache__/*
 *.pyc
 *.pyo
 *.pyd

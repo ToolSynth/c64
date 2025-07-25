@@ -98,6 +98,7 @@ python main.py
 
 Press **Esc** or close the window to quit.
 
+
 ## UML Diagrams
 
 ### Class Diagram
