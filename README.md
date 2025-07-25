@@ -78,9 +78,10 @@ Then place the original ROM images in the `rom/` folder (see below).
 
 ```bash
 mkdir -p rom
-curl -L https://.../basic.901226-01.bin    -o rom/basic.bin
-curl -L https://.../kernal.901227-01.bin   -o rom/kernel.bin
-curl -L https://.../characters.901225-01.bin -o rom/chargen.bin
+   curl -L https://www.zimmers.net/anonftp/pub/cbm/firmware/computers/c64/basic.901226-01.bin -o rom/basic.bin
+   curl -L https://www.zimmers.net/anonftp/pub/cbm/firmware/computers/c64/kernal.901227-01.bin -o rom/kernel.bin
+   curl -L https://www.zimmers.net/anonftp/pub/cbm/firmware/computers/c64/characters.901225-01.bin -o rom/chargen.bin
+   curl -L https://www.zimmers.net/anonftp/pub/cbm/firmware/drives/new/1541/1540-c000.325302-01.bin -o rom/dos1541.bin
 ```
 
 (Replace the URLs with mirrors of your choice.)
