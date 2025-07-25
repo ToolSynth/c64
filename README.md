@@ -5,6 +5,23 @@
 This project is a **basic emulator** of the Commodore 64 written in Python.
 Its main purpose is to **run simple BASIC programs stored in `.prg` files** and to show how an emulator is built, step by step. It covers the MOS 6510 CPU, memory map, a minimal VIC-II display, and input handling.
 
+## 🖼️ Screenshot
+This screenshot shows a simple PRINT command executed in the BASIC interpreter, demonstrating text rendering and keyboard input handling in the emulated environment.
+
+![C64 emulator running](.github/images/basic.png)
+
+## ▶️ Demo 1: Sprite & RAM Tester
+
+A lightweight diagnostic program that visualizes C64 RAM and sprite memory. Useful for verifying basic video memory access and display via the VIC-II module.
+
+![demo 64-tester gif](.github/images/64-tester.gif)
+
+## ▶️ Demo 2: Memory Mapper & CIA Tester
+
+A more advanced diagnostic tool that tests multiple hardware components including CIA-driven memory mapping. Demonstrates support for dynamically remapped address spaces and I/O handling.
+
+![demo 64-tester gif](.github/images/64-doctor.gif)
+
 ## Project Assumptions
 
 * The goal is **not** to reach 100 % hardware accuracy.
