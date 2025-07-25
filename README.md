@@ -68,10 +68,7 @@ This project is a full emulation of the Commodore 64 computer written in Python
 
    * Type `LOAD"*",8,1` and press Enter to load from virtual disk (if 1541 support enabled).
    * Type `RUN` and press Enter to execute the loaded program.
-4. **Keyboard Mapping**
-
-   * The host keyboard maps to C64 keys automatically. Consult [KEYMAP.md](KEYMAP.md) for custom layout.
-5. **Exiting**
+4. **Exiting**
 
    * Close the window or press `ESC` to quit the emulator.
 
@@ -143,7 +140,6 @@ c64/
 ├── tests/             # Unit and integration tests
 ├── main.py            # Entry point
 ├── requirements.txt   # Dependencies
-├── KEYMAP.md          # Keyboard mapping reference
 ├── LICENSE            # MIT License
 └── README.md          # This file
 ```
