@@ -199,9 +199,8 @@ class Render:
 
     def update_pygame_display(self) -> None:
         """Updates the Pygame window with the rendered frame."""
-        for y in range(self.native_height):
-            for x in range(self.native_width):
-                self.rgb_framebuffer[x, y] = COLORS[self.framebuffer[x, y]]
+        # Vectorized color lookup to convert the indexed framebuffer into RGB.
+        self.rgb_framebuffer[:] = COLORS[self.framebuffer]
 
         surface: pygame.Surface = pygame.surfarray.make_surface(self.rgb_framebuffer)
         scaled_surface: pygame.Surface = pygame.transform.scale(
