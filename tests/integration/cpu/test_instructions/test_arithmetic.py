@@ -11,32 +11,32 @@ def arithmetic(bus):
 
 def test_sbc_immediate(bus, arithmetic, time_instruction) -> None:
     """Tests the sbc_immediate instruction and measures its execution time."""
-    # Ustawienia początkowe CPU i pamięci
+    # Initial CPU and memory setup
     bus.cpu.pc = 0x1000
-    bus.cpu.a = 0x50  # Akumulator początkowo 0x50
+    bus.cpu.a = 0x50  # Accumulator initially 0x50
     bus.cpu.status = (bus.cpu.status | 0x01) & ~(
         1 << 3
-    )  # Ustawienie Carry, wyczyszczenie Decimal Mode
-    bus.ram.data[0x1000] = 0x20  # Wartość do odjęcia
+    )  # Set Carry, clear Decimal Mode
+    bus.ram.data[0x1000] = 0x20  # Value to subtract
 
-    # Test dla trybu binarnego (Decimal Mode = False)
+    # Test for binary mode (Decimal Mode = False)
     arithmetic.sbc_immediate()
-
-    # Sprawdzanie wyniku
+    
+    # Verify result
     assert bus.cpu.a == 0x30, (
-        "Akumulator powinien wynosić 0x30 po SBC w trybie binarnym"
+        "Accumulator should be 0x30 after SBC in binary mode"
     )
     assert (bus.cpu.status & 0x01) == 0x01, (
-        "Flaga Carry powinna być ustawiona, gdy wynik jest nieujemny"
+        "Carry flag should be set when result is non-negative"
     )
     assert (bus.cpu.status & 0x02) == 0x00, (
-        "Flaga Zero nie powinna być ustawiona, gdy wynik nie jest równy zero"
+        "Zero flag should not be set when result is non-zero"
     )
     assert (bus.cpu.status & 0x80) == 0x00, (
-        "Flaga Negative nie powinna być ustawiona, gdy wynik nie jest ujemny"
+        "Negative flag should not be set when result is not negative"
     )
     assert (bus.cpu.status & 0x40) == 0x00, (
-        "Flaga Overflow nie powinna być ustawiona, gdy nie wystąpiło przepełnienie"
+        "Overflow flag should not be set when no overflow occurred"
     )
 
     total_time, avg_time = time_instruction(arithmetic.sbc_immediate, repeat=10000)
@@ -49,35 +49,35 @@ def test_sbc_immediate(bus, arithmetic, time_instruction) -> None:
 
 def test_sbc_absolute_x(bus, arithmetic, time_instruction) -> None:
     """Tests the sbc_absolute_x instruction and measures its execution time."""
-    # Ustawienia początkowe CPU i pamięci
-    bus.cpu.pc = 0x1000  # Ustawienie PC na adres 0x1000
-    bus.cpu.x = 0x10  # Ustawienie rejestru X na 0x10
-    bus.cpu.a = 0x50  # Akumulator początkowo 0x50
+    # Initial CPU and memory setup
+    bus.cpu.pc = 0x1000  # Set PC to address 0x1000
+    bus.cpu.x = 0x10  # Set X register to 0x10
+    bus.cpu.a = 0x50  # Accumulator initially 0x50
     bus.cpu.status = (bus.cpu.status | 0x01) & ~(
         1 << 3
-    )  # Ustawienie Carry, wyczyszczenie Decimal Mode
-    bus.ram.data[0x1000] = 0x00  # LSB adresu docelowego
-    bus.ram.data[0x1001] = 0x20  # MSB adresu docelowego (adres docelowy to 0x2000)
-    bus.ram.data[0x2010] = 0x20  # Wartość w pamięci pod adresem 0x2000 + X (0x2010)
+    )  # Set Carry, clear Decimal Mode
+    bus.ram.data[0x1000] = 0x00  # LSB of target address
+    bus.ram.data[0x1001] = 0x20  # MSB of target address (target address is 0x2000)
+    bus.ram.data[0x2010] = 0x20  # Value in memory at address 0x2000 + X (0x2010)
 
-    # Test dla trybu binarnego (Decimal Mode = False)
+    # Test for binary mode (Decimal Mode = False)
     arithmetic.sbc_absolute_x()
-
-    # Sprawdzanie wyniku
+    
+    # Verify result
     assert bus.cpu.a == 0x30, (
-        "Akumulator powinien wynosić 0x30 po SBC w trybie binarnym"
+        "Accumulator should be 0x30 after SBC in binary mode"
     )
     assert (bus.cpu.status & 0x01) == 0x01, (
-        "Flaga Carry powinna być ustawiona, gdy wynik jest nieujemny"
+        "Carry flag should be set when result is non-negative"
     )
     assert (bus.cpu.status & 0x02) == 0x00, (
-        "Flaga Zero nie powinna być ustawiona, gdy wynik nie jest równy zero"
+        "Zero flag should not be set when result is non-zero"
     )
     assert (bus.cpu.status & 0x80) == 0x00, (
-        "Flaga Negative nie powinna być ustawiona, gdy wynik nie jest ujemny"
+        "Negative flag should not be set when result is not negative"
     )
     assert (bus.cpu.status & 0x40) == 0x00, (
-        "Flaga Overflow nie powinna być ustawiona, gdy nie wystąpiło przepełnienie"
+        "Overflow flag should not be set when no overflow occurred"
     )
 
     total_time, avg_time = time_instruction(arithmetic.sbc_absolute_x, repeat=10000)
@@ -90,35 +90,35 @@ def test_sbc_absolute_x(bus, arithmetic, time_instruction) -> None:
 
 def test_sbc_absolute_y(bus, arithmetic, time_instruction) -> None:
     """Tests the sbc_absolute_y instruction and measures its execution time."""
-    # Ustawienia początkowe CPU i pamięci
-    bus.cpu.pc = 0x1000  # Ustawienie PC na adres 0x1000
-    bus.cpu.y = 0x10  # Ustawienie rejestru Y na 0x10
-    bus.cpu.a = 0x50  # Akumulator początkowo 0x50
+    # Initial CPU and memory setup
+    bus.cpu.pc = 0x1000  # Set PC to address 0x1000
+    bus.cpu.y = 0x10  # Set Y register to 0x10
+    bus.cpu.a = 0x50  # Accumulator initially 0x50
     bus.cpu.status = (bus.cpu.status | 0x01) & ~(
         1 << 3
-    )  # Ustawienie Carry, wyczyszczenie Decimal Mode
-    bus.ram.data[0x1000] = 0x00  # LSB adresu bazowego
-    bus.ram.data[0x1001] = 0x20  # MSB adresu bazowego (adres bazowy to 0x2000)
-    bus.ram.data[0x2010] = 0x20  # Wartość w pamięci pod adresem 0x2000 + Y (0x2010)
+    )  # Set Carry, clear Decimal Mode
+    bus.ram.data[0x1000] = 0x00  # LSB of base address
+    bus.ram.data[0x1001] = 0x20  # MSB of base address (base address is 0x2000)
+    bus.ram.data[0x2010] = 0x20  # Value in memory at address 0x2000 + Y (0x2010)
 
-    # Test dla trybu binarnego (Decimal Mode = False)
+    # Test for binary mode (Decimal Mode = False)
     arithmetic.sbc_absolute_y()
-
-    # Sprawdzanie wyniku
+    
+    # Verify result
     assert bus.cpu.a == 0x30, (
-        "Akumulator powinien wynosić 0x30 po SBC w trybie binarnym"
+        "Accumulator should be 0x30 after SBC in binary mode"
     )
     assert (bus.cpu.status & 0x01) == 0x01, (
-        "Flaga Carry powinna być ustawiona, gdy wynik jest nieujemny"
+        "Carry flag should be set when result is non-negative"
     )
     assert (bus.cpu.status & 0x02) == 0x00, (
-        "Flaga Zero nie powinna być ustawiona, gdy wynik nie jest równy zero"
+        "Zero flag should not be set when result is non-zero"
     )
     assert (bus.cpu.status & 0x80) == 0x00, (
-        "Flaga Negative nie powinna być ustawiona, gdy wynik nie jest ujemny"
+        "Negative flag should not be set when result is not negative"
     )
     assert (bus.cpu.status & 0x40) == 0x00, (
-        "Flaga Overflow nie powinna być ustawiona, gdy nie wystąpiło przepełnienie"
+        "Overflow flag should not be set when no overflow occurred"
     )
 
     total_time, avg_time = time_instruction(arithmetic.sbc_absolute_y, repeat=10000)

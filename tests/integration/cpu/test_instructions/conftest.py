@@ -8,8 +8,7 @@ from src.bus.bus import Bus
 @pytest.fixture
 def bus():
     """
-    Prosta atrapa CPU, zawiera minimalną logikę potrzebną do testowania
-    instrukcji skoku.
+    Simple CPU stub containing minimal logic required to test jump instructions.
     """
     return Bus()
 
@@ -17,14 +16,14 @@ def bus():
 @pytest.fixture
 def time_instruction():
     """
-    Fixture zwraca funkcję pomocniczą do pomiaru czasu wykonania dowolnej instrukcji/funkcji.
-    Możemy ją wywołać wielokrotnie, aby uzyskać miarodajny pomiar.
+    Fixture returning a helper function to measure execution time of any instruction/function.
+    It can be called multiple times to obtain a reliable measurement.
     """
 
     def _time_instruction(func, repeat=1, *args, **kwargs):
         """
-        Uruchamia 'func(*args, **kwargs)' 'repeat' razy i zwraca łączny czas w sekundach.
-        Dodatkowo zwraca średni czas (czas_całkowity / repeat).
+        Runs 'func(*args, **kwargs)' 'repeat' times and returns the total time in seconds.
+        Additionally returns the average time (total_time / repeat).
         """
         start = time.perf_counter()
         for _ in range(repeat):

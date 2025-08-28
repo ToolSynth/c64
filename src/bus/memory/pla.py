@@ -66,7 +66,7 @@ class PLA:
         """
         Decodes the address and returns the module responsible for handling the request.
         """
-        result = self.bus.ram  # Domyślnie RAM, jeśli żaden warunek nie pasuje
+        result = self.bus.ram  # Default to RAM if no condition matches
 
         if 0xE000 <= address <= 0xFFFF and self.is_kernel_rom_visible:
             result = self.bus.kernel_rom

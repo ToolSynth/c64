@@ -6,7 +6,7 @@ from src.bus.memory.rom import ROM
 
 @pytest.fixture
 def bus(monkeypatch):
-    """Inicjalizuje magistralę w trybie testowym z zaślepkami ROM."""
+    """Initializes the bus in test mode with ROM stubs."""
 
     def fake_post_init(self):
         self.data = bytes([i % 256 for i in range(self.size)])

@@ -33,8 +33,8 @@ class CPU:
 
     def format_status_for_log(self) -> list[tuple[str, int]]:
         """
-        Formats the status register w układzie NV-BDIZC (typowe w 6502).
-        Indeks bitów: 7=N, 6=V, 5=U, 4=B, 3=D, 2=I, 1=Z, 0=C
+        Formats the status register in the NV-BDIZC layout (typical for the 6502).
+        Bit indices: 7=N, 6=V, 5=U, 4=B, 3=D, 2=I, 1=Z, 0=C
         """
         n = (self.status >> 7) & 1
         v = (self.status >> 6) & 1
