@@ -153,7 +153,7 @@ class InstructionManager:
         }
 
     def execute(self, opcode: int) -> None:
-        """Wykonuje instrukcję na podstawie opcode."""
+        """Executes an instruction based on the opcode."""
         if opcode in self.instructions:
             self.instructions[opcode]()
         else:

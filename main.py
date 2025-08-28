@@ -19,7 +19,7 @@ def main() -> None:
     try:
         emulator.run()
     except KeyboardInterrupt:
-        log.info("Emulator zakończony przez użytkownika.")
+        log.info("Emulator terminated by user.")
 
 
 if __name__ == "__main__":

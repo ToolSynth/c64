@@ -12,248 +12,248 @@ def heap(bus):
 def test_lda_zero_page_non_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_zero_page (LDA Zero Page) instruction with a non-zero value."""
     bus.cpu.pc = 0x1000
-    bus.cpu.a = 0x00  # Początkowa wartość A
-    bus.cpu.status = 0x00  # Wyczyszczenie flag
+    bus.cpu.a = 0x00  # Initial value of A
+    bus.cpu.status = 0x00  # Clear flags
 
-    bus.ram.data[0x1000] = 0x80  # Adres zero-page
-    bus.ram.data[0x80] = 0x45  # Wartość w pamięci
+    bus.ram.data[0x1000] = 0x80  # Zero-page address
+    bus.ram.data[0x80] = 0x45  # Value in memory
 
-    # Wykonanie instrukcji
+    # Execute instruction
     heap.lda_zero_page()
 
-    # Spodziewane wartości
+    # Expected values
     expected_value = 0x45
     expected_zero = expected_value == 0
     expected_negative = (expected_value & 0x80) != 0
 
-    # Sprawdzenie wyników
+    # Verify results
     assert bus.cpu.a == expected_value, (
-        f"A powinno być {hex(expected_value)}, ale jest {hex(bus.cpu.a)}"
+        f"A should be {hex(expected_value)}, but is {hex(bus.cpu.a)}"
     )
     assert (bus.cpu.status & 0x02) == (0x02 if expected_zero else 0x00), (
-        "Flaga Zero jest niepoprawna"
+        "Zero flag incorrect"
     )
     assert (bus.cpu.status & 0x80) == (0x80 if expected_negative else 0x00), (
-        "Flaga Negative jest niepoprawna"
+        "Negative flag incorrect"
     )
-    assert bus.cpu.cycles == 3, "Instrukcja LDA Zero Page powinna zająć 3 cykle"
-    assert bus.cpu.pc == 0x1001, "PC powinno zwiększyć się o 1"
+    assert bus.cpu.cycles == 3, "LDA Zero Page instruction should take 3 cycles"
+    assert bus.cpu.pc == 0x1001, "PC should increment by 1"
 
-    # Pomiar czasu
+    # Measure execution time
     total_time, avg_time = time_instruction(heap.lda_zero_page, repeat=10000)
 
     log.info(
-        f"[test_lda_zero_page_non_zero] Powtórzono 10 000 razy. "
-        f"Całkowity czas: {total_time:.6f}s, Średni czas: {avg_time:.9f}s"
+        f"[test_lda_zero_page_non_zero] Repeated 10,000 times. "
+        f"Total time: {total_time:.6f}s, Average time: {avg_time:.9f}s"
     )
 
 
 def test_lda_zero_page_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_zero_page (LDA Zero Page) instruction with a zero value."""
     bus.cpu.pc = 0x1000
-    bus.cpu.a = 0xFF  # Początkowa wartość A
-    bus.cpu.status = 0x00  # Wyczyszczenie flag
+    bus.cpu.a = 0xFF  # Initial value of A
+    bus.cpu.status = 0x00  # Clear flags
 
-    bus.ram.data[0x1000] = 0x80  # Adres zero-page
-    bus.ram.data[0x80] = 0x00  # Wartość w pamięci
+    bus.ram.data[0x1000] = 0x80  # Zero-page address
+    bus.ram.data[0x80] = 0x00  # Value in memory
 
-    # Wykonanie instrukcji
+    # Execute instruction
     heap.lda_zero_page()
 
-    # Spodziewane wartości
+    # Expected values
     expected_value = 0x00
-    expected_zero = True  # Ponieważ wartość to 0
-    expected_negative = False  # Ponieważ bit 7 nie jest ustawiony
+    expected_zero = True  # Since value is 0
+    expected_negative = False  # Since bit 7 is not set
 
-    # Sprawdzenie wyników
+    # Verify results
     assert bus.cpu.a == expected_value, (
-        f"A powinno być {hex(expected_value)}, ale jest {hex(bus.cpu.a)}"
+        f"A should be {hex(expected_value)}, but is {hex(bus.cpu.a)}"
     )
     assert (bus.cpu.status & 0x02) == (0x02 if expected_zero else 0x00), (
-        "Flaga Zero jest niepoprawna"
+        "Zero flag incorrect"
     )
     assert (bus.cpu.status & 0x80) == (0x80 if expected_negative else 0x00), (
-        "Flaga Negative jest niepoprawna"
+        "Negative flag incorrect"
     )
-    assert bus.cpu.cycles == 3, "Instrukcja LDA Zero Page powinna zająć 3 cykle"
-    assert bus.cpu.pc == 0x1001, "PC powinno zwiększyć się o 1"
+    assert bus.cpu.cycles == 3, "LDA Zero Page instruction should take 3 cycles"
+    assert bus.cpu.pc == 0x1001, "PC should increment by 1"
 
-    # Pomiar czasu
+    # Measure execution time
     total_time, avg_time = time_instruction(heap.lda_zero_page, repeat=10000)
 
     log.info(
-        f"[test_lda_zero_page_zero] Powtórzono 10 000 razy. "
-        f"Całkowity czas: {total_time:.6f}s, Średni czas: {avg_time:.9f}s"
+        f"[test_lda_zero_page_zero] Repeated 10,000 times. "
+        f"Total time: {total_time:.6f}s, Average time: {avg_time:.9f}s"
     )
 
 
 def test_lda_zeropage_x_non_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_zeropage_x (LDA Zero Page,X) instruction with a non-zero value."""
     bus.cpu.pc = 0x1000
-    bus.cpu.a = 0x00  # Początkowa wartość A
-    bus.cpu.x = 0x05  # Offset w rejestrze X
-    bus.cpu.status = 0x00  # Wyczyszczenie flag
+    bus.cpu.a = 0x00  # Initial value of A
+    bus.cpu.x = 0x05  # Offset in X register
+    bus.cpu.status = 0x00  # Clear flags
 
-    bus.ram.data[0x1000] = 0x80  # Base address w zero-page
-    effective_address = (0x80 + 0x05) & 0xFF  # Przesunięcie X w zero-page
-    bus.ram.data[effective_address] = 0x45  # Wartość w pamięci
+    bus.ram.data[0x1000] = 0x80  # Base address in zero page
+    effective_address = (0x80 + 0x05) & 0xFF  # X offset in zero page
+    bus.ram.data[effective_address] = 0x45  # Value in memory
 
-    # Wykonanie instrukcji
+    # Execute instruction
     heap.lda_zeropage_x()
 
-    # Spodziewane wartości
+    # Expected values
     expected_value = 0x45
     expected_zero = expected_value == 0
     expected_negative = (expected_value & 0x80) != 0
 
-    # Sprawdzenie wyników
+    # Verify results
     assert bus.cpu.a == expected_value, (
-        f"A powinno być {hex(expected_value)}, ale jest {hex(bus.cpu.a)}"
+        f"A should be {hex(expected_value)}, but is {hex(bus.cpu.a)}"
     )
     assert (bus.cpu.status & 0x02) == (0x02 if expected_zero else 0x00), (
-        "Flaga Zero jest niepoprawna"
+        "Zero flag incorrect"
     )
     assert (bus.cpu.status & 0x80) == (0x80 if expected_negative else 0x00), (
-        "Flaga Negative jest niepoprawna"
+        "Negative flag incorrect"
     )
-    assert bus.cpu.cycles == 4, "Instrukcja LDA Zero Page,X powinna zająć 4 cykle"
-    assert bus.cpu.pc == 0x1001, "PC powinno zwiększyć się o 1"
+    assert bus.cpu.cycles == 4, "LDA Zero Page,X instruction should take 4 cycles"
+    assert bus.cpu.pc == 0x1001, "PC should increment by 1"
 
-    # Pomiar czasu
+    # Measure execution time
     total_time, avg_time = time_instruction(heap.lda_zeropage_x, repeat=10000)
 
     log.info(
-        f"[test_lda_zeropage_x_non_zero] Powtórzono 10 000 razy. "
-        f"Całkowity czas: {total_time:.6f}s, Średni czas: {avg_time:.9f}s"
+        f"[test_lda_zeropage_x_non_zero] Repeated 10,000 times. "
+        f"Total time: {total_time:.6f}s, Average time: {avg_time:.9f}s"
     )
 
 
 def test_lda_zeropage_x_zero(bus, heap, time_instruction) -> None:
     """Tests the lda_zeropage_x (LDA Zero Page,X) instruction with a zero value."""
     bus.cpu.pc = 0x1000
-    bus.cpu.a = 0xFF  # Początkowa wartość A
-    bus.cpu.x = 0x0A  # Offset w rejestrze X
-    bus.cpu.status = 0x00  # Wyczyszczenie flag
+    bus.cpu.a = 0xFF  # Initial value of A
+    bus.cpu.x = 0x0A  # Offset in X register
+    bus.cpu.status = 0x00  # Clear flags
 
-    bus.ram.data[0x1000] = 0x70  # Base address w zero-page
-    effective_address = (0x70 + 0x0A) & 0xFF  # Przesunięcie X w zero-page
-    bus.ram.data[effective_address] = 0x00  # Wartość w pamięci
+    bus.ram.data[0x1000] = 0x70  # Base address in zero page
+    effective_address = (0x70 + 0x0A) & 0xFF  # X offset in zero page
+    bus.ram.data[effective_address] = 0x00  # Value in memory
 
-    # Wykonanie instrukcji
+    # Execute instruction
     heap.lda_zeropage_x()
     expected_value = 0x00
-    expected_zero = True  # Ponieważ wartość to 0
-    expected_negative = False  # Ponieważ bit 7 nie jest ustawiony
+    expected_zero = True  # Since value is 0
+    expected_negative = False  # Since bit 7 is not set
 
     assert bus.cpu.a == expected_value, (
-        f"A powinno być {hex(expected_value)}, ale jest {hex(bus.cpu.a)}"
+        f"A should be {hex(expected_value)}, but is {hex(bus.cpu.a)}"
     )
     assert (bus.cpu.status & 0x02) == (0x02 if expected_zero else 0x00), (
-        "Flaga Zero jest niepoprawna"
+        "Zero flag incorrect"
     )
     assert (bus.cpu.status & 0x80) == (0x80 if expected_negative else 0x00), (
-        "Flaga Negative jest niepoprawna"
+        "Negative flag incorrect"
     )
-    assert bus.cpu.cycles == 4, "Instrukcja LDA Zero Page,X powinna zająć 4 cykle"
-    assert bus.cpu.pc == 0x1001, "PC powinno zwiększyć się o 1"
+    assert bus.cpu.cycles == 4, "LDA Zero Page,X instruction should take 4 cycles"
+    assert bus.cpu.pc == 0x1001, "PC should increment by 1"
 
     total_time, avg_time = time_instruction(heap.lda_zeropage_x, repeat=10000)
 
     log.info(
-        f"[test_lda_zeropage_x_zero] Powtórzono 10 000 razy. "
-        f"Całkowity czas: {total_time:.6f}s, Średni czas: {avg_time:.9f}s"
+        f"[test_lda_zeropage_x_zero] Repeated 10,000 times. "
+        f"Total time: {total_time:.6f}s, Average time: {avg_time:.9f}s"
     )
 
 
 def test_lda_indirect_y_no_page_cross(bus, heap, time_instruction) -> None:
     """Tests the lda_indirect_y (LDA (Indirect),Y) instruction without page crossing."""
     bus.cpu.pc = 0x1000
-    bus.cpu.a = 0x00  # Początkowa wartość A
-    bus.cpu.y = 0x05  # Offset w rejestrze Y
-    bus.cpu.status = 0x00  # Wyczyszczenie flag
+    bus.cpu.a = 0x00  # Initial value of A
+    bus.cpu.y = 0x05  # Offset in Y register
+    bus.cpu.status = 0x00  # Clear flags
 
-    bus.ram.data[0x1000] = 0x80  # Zero-page adres wskaźnika
-    bus.ram.data[0x80] = 0x34  # Low byte adresu docelowego
-    bus.ram.data[0x81] = 0x12  # High byte adresu docelowego
-    base_address = (0x12 << 8) | 0x34  # Składanie pełnego adresu
-    effective_address = (base_address + 0x05) & 0xFFFF  # Uwzględnienie Y
-    bus.ram.data[effective_address] = 0x45  # Wartość w pamięci
+    bus.ram.data[0x1000] = 0x80  # Zero-page pointer address
+    bus.ram.data[0x80] = 0x34  # Low byte of target address
+    bus.ram.data[0x81] = 0x12  # High byte of target address
+    base_address = (0x12 << 8) | 0x34  # Construct full address
+    effective_address = (base_address + 0x05) & 0xFFFF  # Account for Y
+    bus.ram.data[effective_address] = 0x45  # Value in memory
 
-    # Wykonanie instrukcji
+    # Execute instruction
     heap.lda_indirect_y()
 
-    # Spodziewane wartości
+    # Expected values
     expected_value = 0x45
     expected_zero = expected_value == 0
     expected_negative = (expected_value & 0x80) != 0
 
-    # Sprawdzenie wyników
+    # Verify results
     assert bus.cpu.a == expected_value, (
-        f"A powinno być {hex(expected_value)}, ale jest {hex(bus.cpu.a)}"
+        f"A should be {hex(expected_value)}, but is {hex(bus.cpu.a)}"
     )
     assert (bus.cpu.status & 0x02) == (0x02 if expected_zero else 0x00), (
-        "Flaga Zero jest niepoprawna"
+        "Zero flag incorrect"
     )
     assert (bus.cpu.status & 0x80) == (0x80 if expected_negative else 0x00), (
-        "Flaga Negative jest niepoprawna"
+        "Negative flag incorrect"
     )
     assert bus.cpu.cycles == 5, (
-        "Instrukcja LDA (Indirect),Y powinna zająć 5 cykli bez przekroczenia strony"
+        "LDA (Indirect),Y instruction should take 5 cycles without page crossing"
     )
-    assert bus.cpu.pc == 0x1001, "PC powinno zwiększyć się o 1"
+    assert bus.cpu.pc == 0x1001, "PC should increment by 1"
 
-    # Pomiar czasu
+    # Measure execution time
     total_time, avg_time = time_instruction(heap.lda_indirect_y, repeat=10000)
 
     log.info(
-        f"[test_lda_indirect_y_no_page_cross] Powtórzono 10 000 razy. "
-        f"Całkowity czas: {total_time:.6f}s, Średni czas: {avg_time:.9f}s"
+        f"[test_lda_indirect_y_no_page_cross] Repeated 10,000 times. "
+        f"Total time: {total_time:.6f}s, Average time: {avg_time:.9f}s"
     )
 
 
 def test_lda_indirect_y_page_cross(bus, heap, time_instruction) -> None:
     """Tests the lda_indirect_y (LDA (Indirect),Y) instruction with page crossing."""
     bus.cpu.pc = 0x1000
-    bus.cpu.a = 0x00  # Początkowa wartość A
-    bus.cpu.y = 0xF0  # Offset w rejestrze Y, aby wymusić przekroczenie strony
-    bus.cpu.status = 0x00  # Wyczyszczenie flag
+    bus.cpu.a = 0x00  # Initial value of A
+    bus.cpu.y = 0xF0  # Y register offset to force page crossing
+    bus.cpu.status = 0x00  # Clear flags
 
-    bus.ram.data[0x1000] = 0x80  # Zero-page adres wskaźnika
-    bus.ram.data[0x80] = 0xFF  # Low byte adresu docelowego
-    bus.ram.data[0x81] = 0x12  # High byte adresu docelowego
-    base_address = (0x12 << 8) | 0xFF  # Składanie pełnego adresu
-    effective_address = (base_address + 0xF0) & 0xFFFF  # Uwzględnienie Y
-    bus.ram.data[effective_address] = 0x30  # Wartość w pamięci
+    bus.ram.data[0x1000] = 0x80  # Zero-page pointer address
+    bus.ram.data[0x80] = 0xFF  # Low byte of target address
+    bus.ram.data[0x81] = 0x12  # High byte of target address
+    base_address = (0x12 << 8) | 0xFF  # Construct full address
+    effective_address = (base_address + 0xF0) & 0xFFFF  # Account for Y
+    bus.ram.data[effective_address] = 0x30  # Value in memory
 
-    # Wykonanie instrukcji
+    # Execute instruction
     heap.lda_indirect_y()
 
-    # Spodziewane wartości
+    # Expected values
     expected_value = 0x30
     expected_zero = expected_value == 0
     expected_negative = (expected_value & 0x80) != 0
 
-    # Sprawdzenie wyników
+    # Verify results
     assert bus.cpu.a == expected_value, (
-        f"A powinno być {hex(expected_value)}, ale jest {hex(bus.cpu.a)}"
+        f"A should be {hex(expected_value)}, but is {hex(bus.cpu.a)}"
     )
     assert (bus.cpu.status & 0x02) == (0x02 if expected_zero else 0x00), (
-        "Flaga Zero jest niepoprawna"
+        "Zero flag incorrect"
     )
     assert (bus.cpu.status & 0x80) == (0x80 if expected_negative else 0x00), (
-        "Flaga Negative jest niepoprawna"
+        "Negative flag incorrect"
     )
     assert bus.cpu.cycles == 6, (
-        "Instrukcja LDA (Indirect),Y powinna zająć 6 cykli z przekroczeniem strony"
+        "LDA (Indirect),Y instruction should take 6 cycles with page crossing"
     )
-    assert bus.cpu.pc == 0x1001, "PC powinno zwiększyć się o 1"
+    assert bus.cpu.pc == 0x1001, "PC should increment by 1"
 
-    # Pomiar czasu
+    # Measure execution time
     total_time, avg_time = time_instruction(heap.lda_indirect_y, repeat=10000)
 
     log.info(
-        f"[test_lda_indirect_y_page_cross] Powtórzono 10 000 razy. "
-        f"Całkowity czas: {total_time:.6f}s, Średni czas: {avg_time:.9f}s"
+        f"[test_lda_indirect_y_page_cross] Repeated 10,000 times. "
+        f"Total time: {total_time:.6f}s, Average time: {avg_time:.9f}s"
     )
 
 
