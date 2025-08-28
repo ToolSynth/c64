@@ -1,25 +1,24 @@
-import argparse
 import logging
 
+log: logging.Logger = logging.getLogger("C64Emulator")
 
-def setup_logging() -> logging.Logger:
+
+def setup_logging(*, debug: bool = False) -> logging.Logger:
     """
-    Configures global logging for the Commodore 64 Emulator.
+    Configure global logging for the Commodore 64 Emulator.
 
-    :return: Configured logger instance.
+    Parameters
+    ----------
+    debug: bool
+        Enables debug mode with more detailed logs.
+
+    Returns
+    -------
+    logging.Logger
+        Configured logger instance.
+
     """
-    parser: argparse.ArgumentParser = argparse.ArgumentParser(
-        description="Commodore 64 Emulator Logging Setup"
-    )
-    parser.add_argument(
-        "--debug",
-        action="store_true",
-        help="Enables debug mode with more detailed logs",
-    )
-    args, _ = parser.parse_known_args()
-
-    debug_enabled: bool = args.debug
-    level: int = logging.DEBUG if debug_enabled else logging.INFO
+    level: int = logging.DEBUG if debug else logging.INFO
 
     logging.basicConfig(
         level=level,
@@ -27,10 +26,7 @@ def setup_logging() -> logging.Logger:
         datefmt="%Y-%m-%d %H:%M:%S",
     )
 
-    logger: logging.Logger = logging.getLogger("C64Emulator")
-    logger.info("Logging configured")
+    log.setLevel(level)
+    log.info("Logging configured")
 
-    return logger
-
-
-log: logging.Logger = setup_logging()
+    return log
