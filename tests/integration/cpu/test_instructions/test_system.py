@@ -14,6 +14,7 @@ def test_brk(bus, system, time_instruction) -> None:
     bus.cpu.pc = 0x2000  # Arbitrary starting address
     bus.cpu.sp = 0xFF  # Stack pointer before BRK
     bus.cpu.status = 0b00100000  # Example status with unused bit set
+    initial_sp = bus.cpu.sp
 
     # Set IRQ vector at memory location 0xFFFE/0xFFFF
     bus.write(0xFFFE, 0x34)
@@ -23,7 +24,7 @@ def test_brk(bus, system, time_instruction) -> None:
     system.brk()
 
     # Expected results
-    expected_sp = bus.cpu.sp - 3  # Stack should decrease by 3
+    expected_sp = (initial_sp - 3) & 0xFF  # Stack should decrease by 3
     expected_pc = 0x1234  # IRQ vector address
     expected_status = bus.cpu.status | (1 << 4)  # Break flag should be set
     expected_cycles = 7
@@ -35,13 +36,13 @@ def test_brk(bus, system, time_instruction) -> None:
     assert bus.cpu.sp == expected_sp, (
         f"SP should be {hex(expected_sp)}, but got {hex(bus.cpu.sp)}"
     )
-    assert bus.cpu.bus.read(0x0100 + expected_sp + 2) == ((0x2001 >> 8) & 0xFF), (
+    assert bus.cpu.bus.read(0x0100 + expected_sp + 3) == ((0x2001 >> 8) & 0xFF), (
         "Incorrect high byte of PC pushed"
     )
-    assert bus.cpu.bus.read(0x0100 + expected_sp + 1) == (0x2001 & 0xFF), (
+    assert bus.cpu.bus.read(0x0100 + expected_sp + 2) == (0x2001 & 0xFF), (
         "Incorrect low byte of PC pushed"
     )
-    assert bus.cpu.bus.read(0x0100 + expected_sp) == expected_status, (
+    assert bus.cpu.bus.read(0x0100 + expected_sp + 1) == expected_status, (
         "Incorrect status pushed to stack"
     )
     assert bus.cpu.cycles == expected_cycles, "BRK should take 7 cycles"

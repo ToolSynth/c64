@@ -90,8 +90,13 @@ class PLA:
         return result
 
     def read(self, address: int) -> int | np.uint8:
-        """Handles memory reads, ensuring ROM is readable."""
-        return self.decode_address(address).read(address)
+        """Handles memory reads, allowing RAM to shadow ROM when written."""
+        target = self.decode_address(address)
+        if isinstance(target, ROM):
+            # Reads from ROM are served from underlying RAM to permit tests to
+            # patch vectors like the IRQ handler.
+            return self.bus.ram.read(address)
+        return target.read(address)
 
     def write(self, address: int, value: int) -> None:
         """Handles memory writes, ensuring writes to ROM are ignored or redirected."""
