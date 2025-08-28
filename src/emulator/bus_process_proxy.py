@@ -21,7 +21,12 @@ class BusProcess(mp.Process):
         :param queue: A multiprocessing queue to exchange data between processes.
         """
         super().__init__()
-        self.running: bool = True
+        # multiprocessing processes do not share normal attributes.  A simple
+        # boolean flag would only change in the parent process and the child
+        # would never notice the stop request.  Using an ``Event`` allows both
+        # processes to share a synchronised flag.
+        self.running: mp.Event = mp.Event()
+        self.running.set()
         self.queue: Queue = queue
 
     def run(self) -> None:
@@ -29,7 +34,7 @@ class BusProcess(mp.Process):
         self.bus: Bus = Bus()
         self.queue.put(FrameQueue(bus=self.bus))
 
-        while self.running:
+        while self.running.is_set():
             self.bus.cpu.execute_next_instruction()
             self.bus.vic.tick()
             self.bus.cia_1.tick()
@@ -71,7 +76,8 @@ class BusProcessProxy:
         """Stops the Bus process if it is running."""
         if self._running:
             log.info("[BusProcessProxy] Running...")
-            self.bus_process.running = False
+            # Signal the child process to exit and wait for it to finish.
+            self.bus_process.running.clear()
             self.bus_process.join()
             self._running = False
             log.info("[BusProcessProxy] BusProcess stopped.")
