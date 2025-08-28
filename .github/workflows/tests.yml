@@ -25,14 +25,18 @@ jobs:
         run: |
           mkdir -p rom
           python - <<'PY'
-import os
-os.makedirs('rom', exist_ok=True)
-kernel=bytearray([0]*8192)
-kernel[-2]=0x34
-kernel[-1]=0x12
-for name,data in [('kernel.bin',kernel), ('basic.bin',bytes(8192)), ('chargen.bin',bytes(4096))]:
-    with open(f'rom/{name}','wb') as f:
-        f.write(data)
-PY
+          import os
+          os.makedirs('rom', exist_ok=True)
+          kernel = bytearray([0] * 8192)
+          kernel[-2] = 0x34
+          kernel[-1] = 0x12
+          for name, data in [
+              ('kernel.bin', kernel),
+              ('basic.bin', bytes(8192)),
+              ('chargen.bin', bytes(4096)),
+          ]:
+              with open(f'rom/{name}', 'wb') as f:
+                  f.write(data)
+          PY
       - name: Run tests
         run: pytest
