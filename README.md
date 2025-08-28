@@ -116,6 +116,14 @@ python main.py
 
 Press **Esc** or close the window to quit.
 
+### Debug logging
+
+Run the emulator with verbose debug logs:
+
+```bash
+python main.py --debug
+```
+
 
 ## UML Diagrams
 
